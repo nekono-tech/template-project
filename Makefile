@@ -17,6 +17,8 @@ help:
 	@echo "  make showmigrations-app - アプリケーションのマイグレーション状態を確認する"
 	@echo "  make superuser   - スーパーユーザーを作成する"
 	@echo "  make test        - テストを実行する"
+	@echo "  make test-app    - 特定のアプリのテストを実行する"
+	@echo "  make test-file   - 特定のテストファイルを実行する"
 	@echo "  make clean       - キャッシュファイルなどを削除する"
 	@echo "  make setup       - 一連の操作をまとめて実行する"
 	@echo "  make startapp    - 新しいアプリケーションを作成する"
@@ -85,6 +87,18 @@ collectstatic:
 .PHONY: test
 test:
 	docker-compose exec web python manage.py test
+
+# 特定のテストを実行するコマンド
+.PHONY: test-app
+test-app:
+	@read -p "テストするアプリ名を入力してください: " app_name; \
+	docker-compose exec web python manage.py test $$app_name
+
+# 特定のテストファイルを実行するコマンド
+.PHONY: test-file
+test-file:
+	@read -p "テストファイルのパスを入力してください (例: config.tests.test_views): " test_path; \
+	docker-compose exec web python manage.py test $$test_path
 
 # コード整形とリンティング用コマンド
 .PHONY: format
