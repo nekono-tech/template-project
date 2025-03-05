@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+  <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Django App へようこそ</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">
+        このアプリケーションは Django と Docker を使用して構築されています。
+        シンプルで拡張性の高いウェブアプリケーションの基盤となるプロジェクトです。
+      </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">さっそく始める</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">詳細を見る</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 追加コンテンツ - 特徴セクション -->
+  <div class="row g-4 py-5">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h3 class="card-title">簡単セットアップ</h3>
+          <p class="card-text">Docker と Docker Compose を使用して、開発環境を簡単にセットアップできます。</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h3 class="card-title">最新技術</h3>
+          <p class="card-text">Django 5.0、Bootstrap 5、Python 3.13 など、最新の技術スタックを使用しています。</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h3 class="card-title">拡張性</h3>
+          <p class="card-text">カスタムユーザーモデルや Docker 設定など、将来の拡張に備えた構成になっています。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
