@@ -1,0 +1,47 @@
+services:
+  # ------------------------------
+  # データベース用コンテナ
+  # ------------------------------
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    env_file:
+      - .env
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  # ------------------------------
+  # Django アプリケーション
+  # ------------------------------
+  web:
+    build:
+      context: .
+      # 権限をホストと合わせる
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    container_name: django_app
+    env_file:
+      - .env
+    volumes:
+      - ./app:/app:cached
+    ports:
+      - "8888:8888"
+    depends_on:
+      - postgres
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8888"
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+    name: template_project_postgres_data
+
+networks:
+  app-network:
+    driver: bridge

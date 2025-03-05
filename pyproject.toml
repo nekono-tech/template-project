@@ -1,0 +1,37 @@
+[tool.ruff]
+# ルールセットの設定
+select = ["E", "F", "B", "I"]  # エラー、論理エラー、バグの可能性、インポート順序
+
+# 行の長さ
+line-length = 88
+
+# 自動修正の設定
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+# インポートの整理設定
+[tool.ruff.isort]
+
+# 特定のファイルを除外
+[tool.ruff.lint]
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "*/migrations/*",
+    "static",
+    "media",
+]
+ignore = [
+    # 必要に応じて特定のエラーコードを無効化
+    # 例: "E501",  # 行の長さ超過
+]
+
+# ファイル毎の無視設定
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402", "F401"]  # モジュールインポートの位置とインポート未使用
+"settings.py" = ["E501"]  # 行長制限
+"manage.py" = ["E501"]  # 行長制限
