@@ -3,3 +3,4 @@
 *.pyc
 .vscode
 .ruff_cache
+app/pyproject.toml # マウントによるファイルのため除外

@@ -1,6 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView
-from .forms import LoginForm
 from django.urls import reverse_lazy
+
+from .forms import LoginForm
 
 
 class CustomLoginView(LoginView):

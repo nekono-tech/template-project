@@ -12,7 +12,7 @@ class HomeViewTest(TestCase):
         テストの前処理
         """
         self.client = Client()
-        self.url = reverse('home')  # URLの名前解決
+        self.url = reverse("home")  # URLの名前解決
 
     def test_home_view_status_code(self):
         """
@@ -26,19 +26,19 @@ class HomeViewTest(TestCase):
         正しいテンプレートが使用されていることを確認
         """
         response = self.client.get(self.url)
-        self.assertTemplateUsed(response, 'home.html')
+        self.assertTemplateUsed(response, "home.html")
 
     def test_home_view_context(self):
         """
         コンテキスト変数が正しく渡されていることを確認
         """
         response = self.client.get(self.url)
-        self.assertIn('title', response.context)
-        self.assertEqual(response.context['title'], 'トップページ')
+        self.assertIn("title", response.context)
+        self.assertEqual(response.context["title"], "トップページ")
 
     def test_home_view_content(self):
         """
         レスポンスの内容に期待するテキストが含まれていることを確認
         """
         response = self.client.get(self.url)
-        self.assertContains(response, 'Django App へようこそ')
+        self.assertContains(response, "Django App へようこそ")
