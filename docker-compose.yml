@@ -20,10 +20,6 @@ services:
   web:
     build:
       context: .
-      # 権限をホストと合わせる
-      args:
-        - UID=${UID:-1000}
-        - GID=${GID:-1000}
     container_name: django_app
     env_file:
       - .env
@@ -35,6 +31,8 @@ services:
       - postgres
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8888"
+    # 権限をホストと合わせる
+    user: "${DOCKER_UID:-1000}:${DOCKER_GID:-1000}"
     networks:
       - app-network
 
