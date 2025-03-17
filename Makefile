@@ -1,5 +1,7 @@
 # 変数定義
 SHELL := /bin/bash
+DOCKER_UID ?= $$(id -u)
+DOCKER_GID ?= $$(id -g)
 
 # デフォルトターゲット
 .PHONY: help
@@ -34,13 +36,11 @@ help:
 # ビルド関連コマンド
 .PHONY: build
 build:
-	export UID=$$(id -u) GID=$$(id -g) && \
-	docker-compose build
+	DOCKER_UID=$(DOCKER_UID) DOCKER_GID=$(DOCKER_GID) docker-compose build
 
 .PHONY: up
 up:
-	export UID=$$(id -u) GID=$$(id -g) && \
-	docker-compose up -d
+	DOCKER_UID=$(DOCKER_UID) DOCKER_GID=$(DOCKER_GID) docker-compose up -d
 
 .PHONY: down
 down:
