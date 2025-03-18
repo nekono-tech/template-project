@@ -6,7 +6,7 @@ class HomeView(TemplateView):
     トップページを表示するビュー
     """
 
-    template_name = 'home.html'
+    template_name = "home.html"
 
     def get_context_data(self, **kwargs):
         """
@@ -15,5 +15,5 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         # コンテキストデータを追加する
-        context['title'] = 'トップページ'
+        context["title"] = "トップページ"
         return context
